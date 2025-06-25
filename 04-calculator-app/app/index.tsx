@@ -1,91 +1,103 @@
-import { globalStyles } from "@/styles/global-styles";
-import { View, Text } from "react-native";
-
-import ThemeText from "@/components/ThemeText";
 import ThemeButton from "@/components/ThemeButton";
+import ThemeText from "@/components/ThemeText";
 import { Colors } from "@/constants/Colors";
 import { useCalculator } from "@/hooks/useCalculator";
+import { globalStyles } from "@/styles/global-styles";
+import { View } from "react-native";
 
 const CalculatorApp = () => {
-  const { formula, handleNumberPress } = useCalculator();
+  const {
+    formula,
+    prevNumber,
+    buildNumber,
+    clean,
+    toggleSign,
+    deleteLast,
+    divideOperation,
+    multiplyOperation,
+    subtractOperation,
+    addOperation,
+    calculateResult,
+  } = useCalculator();
 
   return (
     <View style={globalStyles.calculatorContainer}>
-      <View style={globalStyles.resultContainer}>
+      {/* Resultados */}
+      <View style={{ paddingHorizontal: 30, marginBottom: 20 }}>
         <ThemeText variant="h1">{formula}</ThemeText>
-        <ThemeText variant="h2">1111111</ThemeText>
+
+        {formula === prevNumber ? (
+          <ThemeText variant="h2"> </ThemeText>
+        ) : (
+          <ThemeText variant="h2">{prevNumber}</ThemeText>
+        )}
       </View>
+
+      {/* Filas de botones */}
 
       <View style={globalStyles.row}>
         <ThemeButton
           label="C"
-          color={Colors.lightGray}
           blackText
-          onPress={() => console.log("C")}
+          color={Colors.lightGray}
+          onPress={clean}
         />
         <ThemeButton
           label="+/-"
-          color={Colors.lightGray}
           blackText
-          onPress={() => console.log("+/-")}
+          color={Colors.lightGray}
+          onPress={toggleSign}
         />
         <ThemeButton
           label="del"
-          color={Colors.lightGray}
           blackText
-          onPress={() => console.log("del")}
+          color={Colors.lightGray}
+          onPress={deleteLast}
         />
         <ThemeButton
           label="÷"
           color={Colors.orange}
-          onPress={() => console.log("÷")}
+          onPress={divideOperation}
         />
       </View>
 
       <View style={globalStyles.row}>
-        <ThemeButton label="7" onPress={() => handleNumberPress("7")} />
-        <ThemeButton label="8" onPress={() => handleNumberPress("8")} />
-        <ThemeButton label="9" onPress={() => handleNumberPress("9")} />
+        <ThemeButton label="7" onPress={() => buildNumber("7")} />
+        <ThemeButton label="8" onPress={() => buildNumber("8")} />
+        <ThemeButton label="9" onPress={() => buildNumber("9")} />
         <ThemeButton
-          label="x"
+          label="X"
           color={Colors.orange}
-          onPress={() => console.log("x")}
+          onPress={multiplyOperation}
         />
       </View>
 
       <View style={globalStyles.row}>
-        <ThemeButton label="4" onPress={() => handleNumberPress("4")} />
-        <ThemeButton label="5" onPress={() => handleNumberPress("5")} />
-        <ThemeButton label="6" onPress={() => handleNumberPress("6")} />
+        <ThemeButton label="4" onPress={() => buildNumber("4")} />
+        <ThemeButton label="5" onPress={() => buildNumber("5")} />
+        <ThemeButton label="6" onPress={() => buildNumber("6")} />
         <ThemeButton
           label="-"
           color={Colors.orange}
-          onPress={() => console.log("-")}
+          onPress={subtractOperation}
         />
       </View>
 
       <View style={globalStyles.row}>
-        <ThemeButton label="1" onPress={() => handleNumberPress("1")} />
-        <ThemeButton label="2" onPress={() => handleNumberPress("2")} />
-        <ThemeButton label="3" onPress={() => handleNumberPress("3")} />
-        <ThemeButton
-          label="+"
-          color={Colors.orange}
-          onPress={() => console.log("+")}
-        />
+        <ThemeButton label="1" onPress={() => buildNumber("1")} />
+        <ThemeButton label="2" onPress={() => buildNumber("2")} />
+        <ThemeButton label="3" onPress={() => buildNumber("3")} />
+        <ThemeButton label="+" color={Colors.orange} onPress={addOperation} />
       </View>
 
       <View style={globalStyles.row}>
-        <ThemeButton
-          label="0"
-          doubleSize
-          onPress={() => handleNumberPress("0")}
-        />
-        <ThemeButton label="." onPress={() => handleNumberPress(".")} />
+        <ThemeButton label="0" doubleSize onPress={() => buildNumber("0")} />
+        <ThemeButton label="." onPress={() => buildNumber(".")} />
+
         <ThemeButton
           label="="
           color={Colors.orange}
-          onPress={() => console.log("=")}
+          onPress={calculateResult}
         />
       </View>
     </View>
