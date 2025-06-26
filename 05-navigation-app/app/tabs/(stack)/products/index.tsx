@@ -1,7 +1,7 @@
-import { View, Text, FlatList } from "react-native";
-import React from "react";
 import { products } from "@/store/products.store";
 import { Link } from "expo-router";
+import React from "react";
+import { FlatList, Text, View } from "react-native";
 
 const ProductScreen = () => {
   return (
@@ -11,7 +11,7 @@ const ProductScreen = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Link
-            href={`/(stack)/products/${item.id}`}
+            href={`/tabs/(stack)/products/${item.id}`}
             className="p-4 border-b border-gray-200 bg-blue-200 rounded-xl mb-4"
           >
             <View>

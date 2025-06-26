@@ -1,12 +1,11 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { Stack } from "expo-router";
+import React from "react";
 
 const StackLayout = () => {
   return (
     <Stack
       screenOptions={{
-        // headerShown: false,
+        headerShown: false,
         headerShadowVisible: false,
         contentStyle: {
           backgroundColor: "#fff",

@@ -1,9 +1,9 @@
-import React from "react";
 import { Redirect } from "expo-router";
+import React from "react";
 
 const index = () => {
   return (
-    <Redirect href="/(stack)/home" />
+    <Redirect href="./drawer" />
     // <SafeAreaView>
     //   <View className="mt-6 mx-2.5">
     //     <Text style={{ fontFamily: "WorkSans-Black" }} className="text-3xl ">
