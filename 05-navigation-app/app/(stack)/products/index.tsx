@@ -3,13 +3,6 @@ import React from "react";
 import { products } from "@/store/products.store";
 import { Link } from "expo-router";
 
-interface IProduct {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-}
-
 const ProductScreen = () => {
   return (
     <View className="flex flex-1 px-5 mt-3">
