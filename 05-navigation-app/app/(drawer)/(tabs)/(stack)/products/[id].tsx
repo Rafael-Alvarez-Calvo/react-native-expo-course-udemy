@@ -18,18 +18,26 @@ const ProductScreen = () => {
 
   useLayoutEffect(() => {
     if (product) {
+      // navigation.setOptions({
+      //   headerTitle: () => (
+      //     <Text
+      //       style={{
+      //         fontSize: 18,
+      //         lineHeight: 28,
+      //         fontFamily: "WorkSans-Black",
+      //       }}
+      //     >
+      //       {product.title}
+      //     </Text>
+      //   ),
+      // }); Con estas forma al volver atras se muestra por un segundo el titulo mal
+
       navigation.setOptions({
-        headerTitle: () => (
-          <Text
-            style={{
-              fontSize: 18,
-              lineHeight: 28,
-              fontFamily: "WorkSans-Black",
-            }}
-          >
-            {product.title}
-          </Text>
-        ),
+        title: product.title,
+        headerTitleStyle: {
+          fontFamily: "WorkSans-Black",
+          fontSize: 18,
+        },
       });
     }
   }, [navigation, product]);

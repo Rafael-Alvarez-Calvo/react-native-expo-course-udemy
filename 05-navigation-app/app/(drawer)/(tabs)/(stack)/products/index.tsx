@@ -11,7 +11,7 @@ const ProductScreen = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Link
-            href={`/tabs/(stack)/products/${item.id}`}
+            href={`/products/${item.id}`}
             className="p-4 border-b border-gray-200 bg-blue-200 rounded-xl mb-4"
           >
             <View>

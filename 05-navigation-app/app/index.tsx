@@ -3,7 +3,7 @@ import React from "react";
 
 const index = () => {
   return (
-    <Redirect href="./drawer" />
+    <Redirect href="/home" />
     // <SafeAreaView>
     //   <View className="mt-6 mx-2.5">
     //     <Text style={{ fontFamily: "WorkSans-Black" }} className="text-3xl ">
