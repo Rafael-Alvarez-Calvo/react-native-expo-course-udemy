@@ -2,15 +2,15 @@ import { movieApi } from "@/core/api/movie.api";
 import { MovieDBMoviesResponse } from "@/infrastructure/interfaces/moviedb-response";
 import { MovieMapper } from "@/infrastructure/mappers/movie.mapper";
 
-export const nowPLayingAction = async () => {
+export const popularMoviesAction = async () => {
   try {
-    const { data } = await movieApi.get<MovieDBMoviesResponse>('/now_playing');
+    const { data } = await movieApi.get<MovieDBMoviesResponse>('/popular');
     const movies = data.results.map(MovieMapper.fromTheMovieDBToMovie);
 
     return movies;
 
   } catch (error) {
-    console.error("Error fetching now playing movies:", error);
+    console.error("Error fetching popularmovies:", error);
     throw error;
   }
 };
