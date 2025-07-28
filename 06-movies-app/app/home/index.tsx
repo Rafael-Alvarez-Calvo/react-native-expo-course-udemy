@@ -1,11 +1,10 @@
-import { View, Text, ActivityIndicator, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { useMovies } from "@/presentation/hooks/useMovies";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import MainSlideShow from "@/presentation/components/MainSlideShow";
-import MoviesHorizontalList from "@/presentation/components/MoviesHorizontalList";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import MainSlideShow from "@/presentation/components/movies/MainSlideShow";
+import MoviesHorizontalList from "@/presentation/components/movies/MoviesHorizontalList";
+import { Movie } from "@/infrastructure/interfaces/movie.interface";
+import ActivityLoader from "@/presentation/components/ActivityLoader";
 
 const HomeScreen = () => {
   const safeArea = useSafeAreaInsets();
@@ -19,11 +18,7 @@ const HomeScreen = () => {
     upcomingQuery.isLoading
   ) {
     // If the data is still loading, show a loading indicator
-    return (
-      <View className="justify-center items-center flex-1">
-        <ActivityIndicator color="purple" size={60} />
-      </View>
-    );
+    return <ActivityLoader />;
   }
 
   return (
@@ -37,21 +32,26 @@ const HomeScreen = () => {
 
         <MoviesHorizontalList
           title="Populares"
-          movies={popularQuery.data ?? []}
+          loadNextPage={popularQuery.fetchNextPage}
+          movies={
+            popularQuery.data?.pages.flatMap((page) => page as Movie[]) ?? []
+          }
         />
 
         <MoviesHorizontalList
           title="Mejores Calificadas"
-          movies={topRatedQuery.data ?? []}
+          movies={
+            topRatedQuery.data?.pages.flatMap((page) => page as Movie[]) ?? []
+          }
+          loadNextPage={topRatedQuery.fetchNextPage}
         />
 
         <MoviesHorizontalList
           title="Próximamente"
-          movies={upcomingQuery.data ?? []}
-        />
-        <MoviesHorizontalList
-          title="Próximamente"
-          movies={upcomingQuery.data ?? []}
+          movies={
+            upcomingQuery.data?.pages.flatMap((page) => page as Movie[]) ?? []
+          }
+          loadNextPage={upcomingQuery.fetchNextPage}
         />
       </View>
     </ScrollView>

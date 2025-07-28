@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
-import { View, Text } from "react-native";
-import { nowPLayingAction } from "@/core/actions/movies/now-playing.action";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const queryClient = new QueryClient();
 
@@ -11,13 +10,21 @@ const RootLayout = () => {
   // nowPLayingAction();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-    </QueryClientProvider>
+    <GestureHandlerRootView>
+      <QueryClientProvider client={queryClient}>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: "#000",
+            },
+            animation: "fade_from_bottom",
+            animationDuration: 300,
+            statusBarStyle: "light",
+          }}
+        />
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 };
 
