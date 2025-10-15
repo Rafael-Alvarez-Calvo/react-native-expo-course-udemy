@@ -9,7 +9,7 @@ import ThemedView from "@/presentation/shared/ThemedView";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
 import SlideItem from "./SlideItem";
-import { items } from "./slidesData";
+import items from "./slidesData";
 
 const SlidesScreen = () => {
   const flatListRef = useRef<FlatList>(null);
